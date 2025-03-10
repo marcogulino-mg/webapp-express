@@ -1,3 +1,6 @@
+// IMPORT .env
+require("dotenv").config();
+
 // IMPORT mysql2
 const mysql = require("mysql2");
 

@@ -6,6 +6,10 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 
+// MIDDLEWARES
+// Static File Folder
+app.use(express.static("public"));
+
 // HomePage
 app.get("/", (req, res) => {
   res.send("<h1>Rotta di Partenza</h1>");
