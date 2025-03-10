@@ -16,8 +16,16 @@ function index(req, res) {
     if (moviesResults.length === 0)
       return res.status(404).json({ error: "Movies List is Empty" });
 
+    // mapped version of moviesResults
+    const movies = moviesResults.map((movie) => {
+      return {
+        ...movie,
+        image: req.imagePath + movie.image,
+      };
+    });
+
     // Send RES
-    res.json(moviesResults);
+    res.json(movies);
   });
 }
 
@@ -38,6 +46,8 @@ function show(req, res) {
 
     // Save Movie returned from DB
     const movie = movieResults[0];
+    // update movie image path
+    movie.image = req.imagePath + movie.image;
 
     connection.query(showReviews, [id], (err, reviewsResults) => {
       // Query Failed

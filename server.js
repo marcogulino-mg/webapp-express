@@ -6,6 +6,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 // IMPORT Middlewares
+const imagePath = require("./middleware/imagePath");
 const errorsHandler = require("./middleware/errorsHandler");
 const notFound = require("./middleware/notFound");
 // IMPORT Routers
@@ -16,6 +17,8 @@ const moviesRouter = require("./routers/movies");
 app.use(express.static("public"));
 //Registro il body-parser per "application/json"
 app.use(express.json());
+//Custom Middleware for path images
+app.use(imagePath);
 
 // Routers
 app.use("/movies", moviesRouter);
