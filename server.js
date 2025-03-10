@@ -5,10 +5,15 @@ const express = require("express");
 // Server Base Configuration
 const app = express();
 const port = process.env.PORT;
+// IMPORT Routers
+const moviesRouter = require("./routers/movies");
 
 // MIDDLEWARES
 // Static File Folder
 app.use(express.static("public"));
+
+// Routers
+app.use("/movies", moviesRouter);
 
 // HomePage
 app.get("/", (req, res) => {
