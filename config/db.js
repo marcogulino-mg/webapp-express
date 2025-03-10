@@ -6,8 +6,8 @@ const mysql = require("mysql2");
 
 // DB Base Configuration
 const connection = mysql.createConnection({
-  host: process.env.PORT || 3000,
-  user: process.env.DB_USER || "localhost",
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
   password: process.env.DB_PASS || "y38T*aqC2lPkJp",
   database: process.env.DB_NAME || "movies_db",
 });
