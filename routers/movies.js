@@ -10,5 +10,8 @@ const moviesController = require("../controllers/moviesController");
 // Route INDEX (List of Movies)
 router.get("/", moviesController.index);
 
+// Router SHOW (Single Movie)
+router.get("/:id", moviesController.show);
+
 // EXPORT Router
 module.exports = router;
