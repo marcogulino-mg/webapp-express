@@ -14,14 +14,14 @@ const cors = require("cors");
 const moviesRouter = require("./routers/movies");
 
 // MIDDLEWARES
-// CORS
-app.use(cors({ origin: process.env.FE_APP }));
 // Static File Folder
 app.use(express.static("public"));
 //Registro il body-parser per "application/json"
 app.use(express.json());
 //Custom Middleware for path images
 app.use(imagePath);
+// CORS
+app.use(cors({ origin: process.env.FE_APP }));
 
 // Routers
 app.use("/movies", moviesRouter);
