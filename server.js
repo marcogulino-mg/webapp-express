@@ -9,10 +9,13 @@ const port = process.env.PORT;
 const imagePath = require("./middleware/imagePath");
 const errorsHandler = require("./middleware/errorsHandler");
 const notFound = require("./middleware/notFound");
+const cors = require("cors");
 // IMPORT Routers
 const moviesRouter = require("./routers/movies");
 
 // MIDDLEWARES
+// CORS
+app.use(cors({ origin: process.env.FE_APP }));
 // Static File Folder
 app.use(express.static("public"));
 //Registro il body-parser per "application/json"
