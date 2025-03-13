@@ -29,6 +29,7 @@ function index(req, res) {
   });
 }
 
+// SHOW
 function show(req, res) {
   // GET ID from URL
   const id = req.params.id;

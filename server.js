@@ -12,6 +12,7 @@ const notFound = require("./middleware/notFound");
 const cors = require("cors");
 // IMPORT Routers
 const moviesRouter = require("./routers/movies");
+const reviewsRouter = require("./routers/reviews");
 
 // MIDDLEWARES
 // Static File Folder
@@ -25,6 +26,7 @@ app.use(cors({ origin: process.env.FE_APP }));
 
 // Routers
 app.use("/movies", moviesRouter);
+app.use("/movies", reviewsRouter);
 
 // HomePage
 app.get("/", (req, res) => {
