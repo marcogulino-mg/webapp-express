@@ -4,6 +4,8 @@ const express = require("express");
 const router = express.Router();
 // IMPORT Controllers
 const moviesController = require("../controllers/moviesController");
+// IMPORT multer
+const upload = require("../middleware/imageFile")
 
 // C.R.U.D
 
@@ -14,7 +16,7 @@ router.get("/", moviesController.index);
 router.get("/:id", moviesController.show);
 
 // Router STORE
-// router.post("/", moviesController.store);
+router.post("/", upload.single("image"), moviesController.store);
 
 // EXPORT Router
 module.exports = router;

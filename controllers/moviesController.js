@@ -1,3 +1,5 @@
+// // IMPORT multer
+// const upload = require("../middleware/imageFile");
 // IMPORT DB Config file
 const connection = require("../config/db");
 
@@ -54,7 +56,7 @@ function show(req, res) {
       // Query Failed
       if (err) return res.status(500).json({ error: "Database query failed" });
       // Query Empty
-      if (reviewsResults.length === 0)
+      if (reviewsResults.affectedRows === 0)
         return res.status(404).json({ error: "Reviews List is Empty" });
 
       // Add reviews property in movie object filled with reviews
@@ -66,5 +68,31 @@ function show(req, res) {
   });
 }
 
+// STORE
+function store(req, res) {
+  // GET BODY REQ
+  const { title, director, genre, release_year, abstract } = req.body;
+
+  // Handle IMG File
+  const imgName = `${req.file.filename}`;
+
+  // QUERY
+  const addMovie = `INSERT INTO movies (title, director, genre, release_year, abstract, image, created_at, updated_at) 
+  VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())`;
+
+  // Check For Empty Values in BODY REQ
+  if (!title || !director || !genre || !release_year || !abstract)
+    return res.status(404).json({ error: "Missing values" });
+
+  // DB Connection
+  connection.query(addMovie, [title, director, genre, release_year, abstract, imgName], (err, resAddMovie) => {
+    // Query Failed
+    if (err) return res.status(500).json({ error: "Database query failed" });
+
+    // Send RES
+    res.status(201).json({ message: "Movie Added" });
+  });
+}
+
 // EXPORT functions
-module.exports = { index, show };
+module.exports = { index, show, store };
