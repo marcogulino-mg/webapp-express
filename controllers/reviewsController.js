@@ -7,7 +7,6 @@ function store(req, res) {
   const { id } = req.params;
   // GET BODY REQ
   const { name, vote, text } = req.body;
-
   // QUERY
   const addReview = `INSERT INTO reviews (movie_id, name, vote, text, created_at, updated_at)
     VALUES (?, ?, ?, ?, NOW(), NOW())`;
@@ -22,7 +21,7 @@ function store(req, res) {
     if (err) return res.status(500).json({ error: "Database query failed" });
 
     // Send RES
-    res.json(resultReview);
+    res.status(201).json({ message: "Review Added" });
   });
 }
 

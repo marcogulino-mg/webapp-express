@@ -13,5 +13,8 @@ router.get("/", moviesController.index);
 // Router SHOW (Single Movie)
 router.get("/:id", moviesController.show);
 
+// Router STORE
+// router.post("/", moviesController.store);
+
 // EXPORT Router
 module.exports = router;
